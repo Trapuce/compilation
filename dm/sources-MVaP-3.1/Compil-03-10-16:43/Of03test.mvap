@@ -1,0 +1,20 @@
+PUSHI 0 
+  JUMP Main
+LABEL g
+LABEL Main
+nullnullPUSHG -3
+PUSHI 2
+MUL
+nullCALL g
+POP
+nullCALL g
+POP
+PUSHI 2
+MUL
+ADD
+STOREG 0
+PUSHG 0
+WRITE
+POP
+  HALT
+

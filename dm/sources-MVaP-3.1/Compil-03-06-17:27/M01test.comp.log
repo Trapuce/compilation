@@ -1,0 +1,8 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 3:10 no viable alternative at input 'intfactor('
+line 4:10 no viable alternative at input 'for('
+line 4:27 no viable alternative at input 'i=i+1)'
+line 5:33 missing '{' at 'print'
+line 7:13 no viable alternative at input 'return0'
+line 10:6 no viable alternative at input 'factor('
+line 11:0 extraneous input '<EOF>' expecting {'input', '(', '-', 'print', 'if', 'while', '{', '}', 'true', 'false', ';', IDENTIFIANT, ENTIER, NEWLINE}

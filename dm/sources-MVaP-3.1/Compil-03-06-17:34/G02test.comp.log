@@ -1,0 +1,5 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 2:16 missing '{' at 'i'
+line 5:15 missing '{' at 'i'
+line 8:0 no viable alternative at input '\n'
+line 8:0 extraneous input '<EOF>' expecting {'input', '(', '-', 'print', 'if', 'while', '{', '}', 'true', 'false', ';', IDENTIFIANT, ENTIER, NEWLINE}

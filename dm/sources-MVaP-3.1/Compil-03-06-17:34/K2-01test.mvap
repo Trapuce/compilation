@@ -1,0 +1,18 @@
+PUSHI 0 
+PUSHI 5
+STOREG 0
+nullnullnullnullnullnullnullPUSHI 69888
+WRITE
+POP
+PUSHG 0
+PUSHI 1
+ADD
+STOREG 0
+nullnullPUSHI 4
+PUSHI 5
+ADD
+PUSHG 0
+WRITE
+POP
+  HALT
+

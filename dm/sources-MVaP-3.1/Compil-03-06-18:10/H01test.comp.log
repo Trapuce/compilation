@@ -1,0 +1,10 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 2:14 mismatched input '||' expecting ')'
+line 2:24 mismatched input ')' expecting {';', NEWLINE}
+line 5:7 extraneous input '!' expecting {'(', '-', 'true', 'false', IDENTIFIANT, ENTIER}
+line 5:18 mismatched input '||' expecting {')', '-', '*', '/', '+'}
+line 5:26 mismatched input ')' expecting {';', NEWLINE}
+line 8:13 mismatched input '||' expecting ')'
+line 8:23 mismatched input '||' expecting {';', NEWLINE}
+line 8:32 mismatched input '&&' expecting {';', NEWLINE}
+line 8:45 mismatched input ')' expecting {';', NEWLINE}

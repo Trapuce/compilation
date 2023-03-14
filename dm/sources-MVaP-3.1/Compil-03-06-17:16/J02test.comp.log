@@ -1,0 +1,5 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 7:4 no viable alternative at input 'for('
+line 7:21 no viable alternative at input 'i=i+1)'
+line 10:6 no viable alternative at input 'for('
+line 10:23 no viable alternative at input 'j=j+1)'

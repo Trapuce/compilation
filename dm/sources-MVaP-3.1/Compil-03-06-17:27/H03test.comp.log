@@ -1,0 +1,8 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 3:10 token recognition error at: '&'
+line 3:11 token recognition error at: '&'
+line 3:19 token recognition error at: '|'
+line 3:20 token recognition error at: '|'
+line 3:13 mismatched input 'i' expecting {')', '-', '*', '/', '+'}
+line 3:22 mismatched input 'i' expecting {';', NEWLINE}
+line 3:25 mismatched input ')' expecting {';', NEWLINE}

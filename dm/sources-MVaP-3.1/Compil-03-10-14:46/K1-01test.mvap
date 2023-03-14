@@ -1,0 +1,8 @@
+  JUMP Main
+nullRETURN
+LABEL Main
+PUSHI 12
+WRITE
+POP
+  HALT
+

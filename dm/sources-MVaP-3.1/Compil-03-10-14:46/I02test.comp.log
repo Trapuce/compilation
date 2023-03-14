@@ -1,0 +1,8 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 4:3 mismatched input 'else' expecting {';', NEWLINE}
+line 6:3 mismatched input 'else' expecting {';', NEWLINE}
+line 8:3 mismatched input 'else' expecting {';', NEWLINE}
+line 10:3 mismatched input 'else' expecting {';', NEWLINE}
+line 12:3 mismatched input 'else' expecting {';', NEWLINE}
+line 14:0 mismatched input 'if' expecting {';', NEWLINE}
+line 15:1 mismatched input 'else' expecting {';', NEWLINE}

@@ -1,0 +1,4 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 5:11 token recognition error at: ','
+line 12:5 token recognition error at: ','
+line 2:6 no viable alternative at input 'intg(int'

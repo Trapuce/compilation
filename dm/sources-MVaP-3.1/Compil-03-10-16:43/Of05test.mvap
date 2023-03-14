@@ -1,0 +1,9 @@
+PUSHI 0 
+  JUMP Main
+LABEL g
+LABEL Main
+nullnullPUSHG -3
+PUSHI 2
+MUL
+  HALT
+

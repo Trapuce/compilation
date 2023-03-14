@@ -1,0 +1,6 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 3:8 no viable alternative at input 'intfibo('
+line 5:9 no viable alternative at input 'returnn'
+line 7:6 no viable alternative at input 'else{'
+line 8:9 no viable alternative at input 'returnfibo'
+line 12:9 mismatched input '(' expecting {';', NEWLINE}

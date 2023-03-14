@@ -1,0 +1,21 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 2:14 token recognition error at: '|'
+line 2:15 token recognition error at: '|'
+line 5:7 token recognition error at: '! '
+line 5:18 token recognition error at: '|'
+line 5:19 token recognition error at: '|'
+line 8:13 token recognition error at: '|'
+line 8:14 token recognition error at: '|'
+line 8:16 token recognition error at: '! '
+line 8:23 token recognition error at: '|'
+line 8:24 token recognition error at: '|'
+line 8:32 token recognition error at: '&'
+line 8:33 token recognition error at: '&'
+line 8:36 token recognition error at: '! '
+line 2:17 missing ')' at 'i'
+line 2:24 mismatched input ')' expecting {';', NEWLINE}
+line 5:21 extraneous input 'false' expecting ')'
+line 8:18 missing ')' at 'true'
+line 8:26 mismatched input 'true' expecting {';', NEWLINE}
+line 8:38 mismatched input 'i' expecting {';', NEWLINE}
+line 8:45 mismatched input ')' expecting {';', NEWLINE}

@@ -1,0 +1,15 @@
+PUSHI 0 
+PUSHI 0 
+PUSHI 0 
+  JUMP Main
+LABEL mod
+LABEL Main
+nullnullPUSHG -4
+PUSHG -4
+PUSHG -3
+DIV
+PUSHG -3
+MUL
+SUB
+  HALT
+

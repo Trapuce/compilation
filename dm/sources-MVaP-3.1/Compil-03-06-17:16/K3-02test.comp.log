@@ -1,0 +1,5 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 2:5 no viable alternative at input 'intg('
+line 3:9 no viable alternative at input 'returnx'
+## Erreur : la variable "x" n'existe pas
+Problems calling org.antlr.v4.gui.TestRig.main(args)

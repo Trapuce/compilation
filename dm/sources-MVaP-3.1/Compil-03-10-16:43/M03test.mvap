@@ -1,0 +1,22 @@
+PUSHI 0 
+PUSHI 0 
+  JUMP Main
+LABEL fibo
+LABEL Main
+nullnullnullnullPUSHG -3
+PUSHI 2
+INF
+nullnullPUSHG -3
+nullnullnullCALL fibo
+POP
+nullCALL fibo
+POP
+ADD
+nullCALL fibo
+POP
+STOREG 1
+PUSHG 1
+WRITE
+POP
+  HALT
+

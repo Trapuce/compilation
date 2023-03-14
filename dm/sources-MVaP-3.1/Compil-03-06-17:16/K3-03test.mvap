@@ -1,0 +1,15 @@
+PUSHI 0 
+PUSHI 0
+STOREG 0
+nullnullnullnullnullnullnullnullnullPUSHG 0
+PUSHI 40
+ADD
+PUSHG 0
+WRITE
+POP
+nullnullnullnullnullnullPUSHI 2
+PUSHG 0
+WRITE
+POP
+  HALT
+

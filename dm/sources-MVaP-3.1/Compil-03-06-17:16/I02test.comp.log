@@ -1,0 +1,30 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 9:10 token recognition error at: '|'
+line 9:11 token recognition error at: '|'
+line 11:10 token recognition error at: '&'
+line 11:11 token recognition error at: '&'
+line 13:4 token recognition error at: '! '
+line 14:10 token recognition error at: '|'
+line 14:11 token recognition error at: '|'
+line 14:13 token recognition error at: '! '
+line 14:22 token recognition error at: '&'
+line 14:23 token recognition error at: '&'
+line 3:11 missing '{' at 'print'
+line 4:8 no viable alternative at input 'elseprint'
+line 5:12 missing '{' at 'print'
+line 6:8 no viable alternative at input 'elseprint'
+line 7:14 missing '{' at 'print'
+line 8:8 no viable alternative at input 'elseprint'
+line 9:13 mismatched input 'z' expecting ')'
+line 9:18 mismatched input ')' expecting {';', NEWLINE}
+line 10:8 no viable alternative at input 'elseprint'
+line 11:14 mismatched input 'z' expecting ')'
+line 11:19 mismatched input ')' expecting {';', NEWLINE}
+line 12:8 no viable alternative at input 'elseprint'
+line 13:12 missing '{' at 'print'
+line 14:15 mismatched input 'false' expecting ')'
+line 14:26 mismatched input 'true' expecting {';', NEWLINE}
+line 14:30 mismatched input ')' expecting {';', NEWLINE}
+line 15:6 no viable alternative at input 'elseprint'
+line 17:0 no viable alternative at input '\n'
+line 17:0 extraneous input '<EOF>' expecting {'input', '(', '-', 'print', 'if', 'while', '{', '}', 'true', 'false', ';', IDENTIFIANT, ENTIER, NEWLINE}

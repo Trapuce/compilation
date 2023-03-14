@@ -1,0 +1,7 @@
+PUSHI 0 
+  JUMP Main
+LABEL Main
+READ
+STOREG 0
+nullnullnullnullnullnullnull  HALT
+
