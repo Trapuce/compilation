@@ -1,4 +1,4 @@
-// Generated from MVaP.g4 by ANTLR 4.7.2
+// Generated from MVaP.g4 by ANTLR 4.12.0
 
     import java.util.HashMap;
 
@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
+@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class MVaPParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.12.0", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -121,6 +121,8 @@ public class MVaPParser extends Parser {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
+
+	@SuppressWarnings("CheckReturnValue")
 	public static class ProgramContext extends ParserRuleContext {
 		public List<InstrContext> instr() {
 			return getRuleContexts(InstrContext.class);
@@ -162,7 +164,7 @@ public class MVaPParser extends Parser {
 				setState(23); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ADD) | (1L << SUB) | (1L << MUL) | (1L << DIV) | (1L << INF) | (1L << INFEQ) | (1L << SUP) | (1L << SUPEQ) | (1L << EQUAL) | (1L << NEQ) | (1L << FADD) | (1L << FSUB) | (1L << FMUL) | (1L << FDIV) | (1L << FINF) | (1L << FINFEQ) | (1L << FSUP) | (1L << FSUPEQ) | (1L << FEQUAL) | (1L << FNEQ) | (1L << ITOF) | (1L << FTOI) | (1L << RETURN) | (1L << POP) | (1L << POPF) | (1L << READ) | (1L << READF) | (1L << WRITE) | (1L << WRITEF) | (1L << PADD) | (1L << PUSHGP) | (1L << PUSHFP) | (1L << DUP) | (1L << XCHG) | (1L << PUSHI) | (1L << PUSHG) | (1L << STOREG) | (1L << PUSHL) | (1L << STOREL) | (1L << PUSHR) | (1L << STORER) | (1L << FREE) | (1L << ALLOC) | (1L << PUSHF) | (1L << CALL) | (1L << JUMP) | (1L << JUMPF) | (1L << JUMPI) | (1L << HALT) | (1L << LABEL) | (1L << NEWLINE))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 54043195528445936L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -176,6 +178,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class InstrContext extends ParserRuleContext {
 		public Instr1Context instr1() {
 			return getRuleContext(Instr1Context.class,0);
@@ -326,6 +329,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Commande1Context extends ParserRuleContext {
 		public TerminalNode ADD() { return getToken(MVaPParser.ADD, 0); }
 		public TerminalNode SUB() { return getToken(MVaPParser.SUB, 0); }
@@ -385,7 +389,7 @@ public class MVaPParser extends Parser {
 			{
 			setState(43);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ADD) | (1L << SUB) | (1L << MUL) | (1L << DIV) | (1L << INF) | (1L << INFEQ) | (1L << SUP) | (1L << SUPEQ) | (1L << EQUAL) | (1L << NEQ) | (1L << FADD) | (1L << FSUB) | (1L << FMUL) | (1L << FDIV) | (1L << FINF) | (1L << FINFEQ) | (1L << FSUP) | (1L << FSUPEQ) | (1L << FEQUAL) | (1L << FNEQ) | (1L << ITOF) | (1L << FTOI) | (1L << RETURN) | (1L << POP) | (1L << POPF) | (1L << READ) | (1L << READF) | (1L << WRITE) | (1L << WRITEF) | (1L << PADD) | (1L << PUSHGP) | (1L << PUSHFP) | (1L << DUP) | (1L << XCHG) | (1L << HALT))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4503874505277424L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -406,6 +410,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Instr1Context extends ParserRuleContext {
 		public Commande1Context c;
 		public Commande1Context commande1() {
@@ -447,6 +452,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Commande2Context extends ParserRuleContext {
 		public TerminalNode PUSHI() { return getToken(MVaPParser.PUSHI, 0); }
 		public TerminalNode PUSHG() { return getToken(MVaPParser.PUSHG, 0); }
@@ -480,7 +486,7 @@ public class MVaPParser extends Parser {
 			{
 			setState(48);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PUSHI) | (1L << PUSHG) | (1L << STOREG) | (1L << PUSHL) | (1L << STOREL) | (1L << PUSHR) | (1L << STORER) | (1L << FREE) | (1L << ALLOC))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 140462610448384L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -501,6 +507,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Instr2Context extends ParserRuleContext {
 		public Commande2Context commande2() {
 			return getRuleContext(Commande2Context.class,0);
@@ -544,6 +551,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Instr2fContext extends ParserRuleContext {
 		public TerminalNode PUSHF() { return getToken(MVaPParser.PUSHF, 0); }
 		public TerminalNode FLOAT() { return getToken(MVaPParser.FLOAT, 0); }
@@ -585,6 +593,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class CommandeSautContext extends ParserRuleContext {
 		public TerminalNode JUMP() { return getToken(MVaPParser.JUMP, 0); }
 		public TerminalNode JUMPF() { return getToken(MVaPParser.JUMPF, 0); }
@@ -613,7 +622,7 @@ public class MVaPParser extends Parser {
 			{
 			setState(58);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CALL) | (1L << JUMP) | (1L << JUMPF) | (1L << JUMPI))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4222124650659840L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -634,6 +643,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class SautContext extends ParserRuleContext {
 		public CommandeSautContext commandeSaut() {
 			return getRuleContext(CommandeSautContext.class,0);
@@ -677,6 +687,7 @@ public class MVaPParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class LabelContext extends ParserRuleContext {
 		public Token IDENTIFIANT;
 		public TerminalNode LABEL() { return getToken(MVaPParser.LABEL, 0); }
@@ -720,23 +731,45 @@ public class MVaPParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\39G\4\2\t\2\4\3\t\3"+
-		"\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3\2"+
-		"\6\2\30\n\2\r\2\16\2\31\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\3\5\3,\n\3\3\4\3\4\3\5\3\5\3\5\3\6\3\6\3\7\3\7\3\7\3"+
-		"\7\3\b\3\b\3\b\3\b\3\t\3\t\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\2"+
-		"\2\f\2\4\6\b\n\f\16\20\22\24\2\5\4\2\6\'\66\66\3\2(\60\3\2\62\65\2B\2"+
-		"\27\3\2\2\2\4+\3\2\2\2\6-\3\2\2\2\b/\3\2\2\2\n\62\3\2\2\2\f\64\3\2\2\2"+
-		"\168\3\2\2\2\20<\3\2\2\2\22>\3\2\2\2\24B\3\2\2\2\26\30\5\4\3\2\27\26\3"+
-		"\2\2\2\30\31\3\2\2\2\31\27\3\2\2\2\31\32\3\2\2\2\32\3\3\2\2\2\33\34\5"+
-		"\b\5\2\34\35\79\2\2\35,\3\2\2\2\36\37\5\f\7\2\37 \79\2\2 ,\3\2\2\2!\""+
-		"\5\16\b\2\"#\79\2\2#,\3\2\2\2$%\5\24\13\2%&\79\2\2&,\3\2\2\2\'(\5\22\n"+
-		"\2()\79\2\2),\3\2\2\2*,\79\2\2+\33\3\2\2\2+\36\3\2\2\2+!\3\2\2\2+$\3\2"+
-		"\2\2+\'\3\2\2\2+*\3\2\2\2,\5\3\2\2\2-.\t\2\2\2.\7\3\2\2\2/\60\5\6\4\2"+
-		"\60\61\b\5\1\2\61\t\3\2\2\2\62\63\t\3\2\2\63\13\3\2\2\2\64\65\5\n\6\2"+
-		"\65\66\7\4\2\2\66\67\b\7\1\2\67\r\3\2\2\289\7\61\2\29:\7\5\2\2:;\b\b\1"+
-		"\2;\17\3\2\2\2<=\t\4\2\2=\21\3\2\2\2>?\5\20\t\2?@\78\2\2@A\b\n\1\2A\23"+
-		"\3\2\2\2BC\7\67\2\2CD\78\2\2DE\b\13\1\2E\25\3\2\2\2\4\31+";
+		"\u0004\u00017E\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002\u0002"+
+		"\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002\u0005"+
+		"\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002\b\u0007"+
+		"\b\u0002\t\u0007\t\u0001\u0000\u0004\u0000\u0016\b\u0000\u000b\u0000\f"+
+		"\u0000\u0017\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001"+
+		"*\b\u0001\u0001\u0002\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0007\u0001\u0007"+
+		"\u0001\b\u0001\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001\t\u0001"+
+		"\t\u0000\u0000\n\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0000"+
+		"\u0003\u0002\u0000\u0004%44\u0001\u0000&.\u0001\u000003@\u0000\u0015\u0001"+
+		"\u0000\u0000\u0000\u0002)\u0001\u0000\u0000\u0000\u0004+\u0001\u0000\u0000"+
+		"\u0000\u0006-\u0001\u0000\u0000\u0000\b0\u0001\u0000\u0000\u0000\n2\u0001"+
+		"\u0000\u0000\u0000\f6\u0001\u0000\u0000\u0000\u000e:\u0001\u0000\u0000"+
+		"\u0000\u0010<\u0001\u0000\u0000\u0000\u0012@\u0001\u0000\u0000\u0000\u0014"+
+		"\u0016\u0003\u0002\u0001\u0000\u0015\u0014\u0001\u0000\u0000\u0000\u0016"+
+		"\u0017\u0001\u0000\u0000\u0000\u0017\u0015\u0001\u0000\u0000\u0000\u0017"+
+		"\u0018\u0001\u0000\u0000\u0000\u0018\u0001\u0001\u0000\u0000\u0000\u0019"+
+		"\u001a\u0003\u0006\u0003\u0000\u001a\u001b\u00057\u0000\u0000\u001b*\u0001"+
+		"\u0000\u0000\u0000\u001c\u001d\u0003\n\u0005\u0000\u001d\u001e\u00057"+
+		"\u0000\u0000\u001e*\u0001\u0000\u0000\u0000\u001f \u0003\f\u0006\u0000"+
+		" !\u00057\u0000\u0000!*\u0001\u0000\u0000\u0000\"#\u0003\u0012\t\u0000"+
+		"#$\u00057\u0000\u0000$*\u0001\u0000\u0000\u0000%&\u0003\u0010\b\u0000"+
+		"&\'\u00057\u0000\u0000\'*\u0001\u0000\u0000\u0000(*\u00057\u0000\u0000"+
+		")\u0019\u0001\u0000\u0000\u0000)\u001c\u0001\u0000\u0000\u0000)\u001f"+
+		"\u0001\u0000\u0000\u0000)\"\u0001\u0000\u0000\u0000)%\u0001\u0000\u0000"+
+		"\u0000)(\u0001\u0000\u0000\u0000*\u0003\u0001\u0000\u0000\u0000+,\u0007"+
+		"\u0000\u0000\u0000,\u0005\u0001\u0000\u0000\u0000-.\u0003\u0004\u0002"+
+		"\u0000./\u0006\u0003\uffff\uffff\u0000/\u0007\u0001\u0000\u0000\u0000"+
+		"01\u0007\u0001\u0000\u00001\t\u0001\u0000\u0000\u000023\u0003\b\u0004"+
+		"\u000034\u0005\u0002\u0000\u000045\u0006\u0005\uffff\uffff\u00005\u000b"+
+		"\u0001\u0000\u0000\u000067\u0005/\u0000\u000078\u0005\u0003\u0000\u0000"+
+		"89\u0006\u0006\uffff\uffff\u00009\r\u0001\u0000\u0000\u0000:;\u0007\u0002"+
+		"\u0000\u0000;\u000f\u0001\u0000\u0000\u0000<=\u0003\u000e\u0007\u0000"+
+		"=>\u00056\u0000\u0000>?\u0006\b\uffff\uffff\u0000?\u0011\u0001\u0000\u0000"+
+		"\u0000@A\u00055\u0000\u0000AB\u00056\u0000\u0000BC\u0006\t\uffff\uffff"+
+		"\u0000C\u0013\u0001\u0000\u0000\u0000\u0002\u0017)";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

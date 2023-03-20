@@ -1,4 +1,4 @@
-// Generated from /home/traore213/Documents/l3/s2/theorie_des_langages_et_compilation/dm/compilation/dm/sources-MVaP-3.1/calcul.g4 by ANTLR 4.9.2
+// Generated from /home/traore/Documents/theorieDesLangagesEtCompilation/Compilation/new/compilation/dm/sources-MVaP-3.1/calcul.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -20,7 +20,7 @@ public class calculParser extends Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, RETURN=29, TYPE=30, IDENTIFIANT=31, 
-		WHITE_SPACE=32, COMMENT=33, LINE_COMMENT=34, COMMA=35, ENTIER=36, NEWLINE=37;
+		WHITE_SPACE=32, COMMENT=33, LINE_COMMENT=34, FLOTTANT=35, ENTIER=36, NEWLINE=37;
 	public static final int
 		RULE_start = 0, RULE_calcul = 1, RULE_instruction = 2, RULE_expr = 3, 
 		RULE_decl = 4, RULE_assignation = 5, RULE_fonction = 6, RULE_params = 7, 
@@ -49,7 +49,7 @@ public class calculParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, "RETURN", "TYPE", "IDENTIFIANT", "WHITE_SPACE", 
-			"COMMENT", "LINE_COMMENT", "COMMA", "ENTIER", "NEWLINE"
+			"COMMENT", "LINE_COMMENT", "FLOTTANT", "ENTIER", "NEWLINE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -102,12 +102,11 @@ public class calculParser extends Parser {
 	     private int _cur_label = 1;
 	    /** générateur de nom d'étiquettes pour les boucles */
 	    private String getNewLabel() { return "Label" +(_cur_label++); }
-	    // ...
-	       private TablesSymboles tablesSymboles = new TablesSymboles();
+	    private TablesSymboles tablesSymboles = new TablesSymboles();
 
-	    private String evalexpr (String x, String op, String y , String typeA , String typeB) {
+	    private String evalexpr (String x, String op, String y , String type) {
 	        
-	        if(typeA.equals("double") && typeB.equals("double")){
+	        if(type.equals("double")){
 	            if ( op.equals("*") ){
 	                return x+y + "FMUL\n";
 	             } else if ( op.equals("+") ){
@@ -126,7 +125,7 @@ public class calculParser extends Parser {
 	                 return x+y + "MUL\n";
 	             } else if ( op.equals("+") ){
 	                 return x+y+"ADD\n";
-	            }else if ( op.equals("/") ){
+	            }else if ( op.equals("/")){
 	                return x+y+"DIV\n";
 	            }else if ( op.equals("-") ){
 	                return x+y+"SUB\n";
@@ -289,7 +288,7 @@ public class calculParser extends Parser {
 			setState(68);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__3) | (1L << T__8) | (1L << T__9) | (1L << T__12) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << RETURN) | (1L << IDENTIFIANT) | (1L << COMMA) | (1L << ENTIER) | (1L << NEWLINE))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__3) | (1L << T__8) | (1L << T__9) | (1L << T__12) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << RETURN) | (1L << IDENTIFIANT) | (1L << FLOTTANT) | (1L << ENTIER) | (1L << NEWLINE))) != 0)) {
 				{
 				{
 				setState(63);
@@ -458,17 +457,17 @@ public class calculParser extends Parser {
 
 				             VariableInfo vi = tablesSymboles.getVar((((InstructionContext)_localctx).IDENTIFIANT!=null?((InstructionContext)_localctx).IDENTIFIANT.getText():null));
 				             if(vi.type.equals("double")){
-				             if(vi.scope == VariableInfo.Scope.GLOBAL){
-				                ((InstructionContext)_localctx).code =  "READF\nSTOREG "+(vi.address+1)+"\nSTOREG "+vi.address+"\n";
-				             }else{
-				                ((InstructionContext)_localctx).code =  "READF\nSTOREL "+(vi.address+1)+"\nSTOREL "+vi.address+"\n";
-				             }
+				                if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                    ((InstructionContext)_localctx).code =  "READF\nSTOREG "+(vi.address+1)+"\nSTOREG "+vi.address+"\n";
+				                }else{
+				                    ((InstructionContext)_localctx).code =  "READF\nSTOREL "+(vi.address+1)+"\nSTOREL "+vi.address+"\n";
+				                }
 				             }else{
 				                if(vi.scope == VariableInfo.Scope.GLOBAL){
-				                ((InstructionContext)_localctx).code =  "READ\nSTOREG "+vi.address+"\n";
-				             }else{
-				                ((InstructionContext)_localctx).code =  "READ\nSTOREL "+vi.address+"\n";
-				             }
+				                    ((InstructionContext)_localctx).code =  "READ\nSTOREG "+vi.address+"\n";
+				                }else{
+				                    ((InstructionContext)_localctx).code =  "READ\nSTOREL "+vi.address+"\n";
+				                }
 				             }
 				        
 				}
@@ -485,13 +484,13 @@ public class calculParser extends Parser {
 
 				            VariableInfo vi = tablesSymboles.getReturn();
 				            if(vi.type.equals("double")){
-				            ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+(vi.address+1)+ "\nSTOREL "+vi.address+"\n";
+				                ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+(vi.address+1)+ "\nSTOREL "+vi.address+"\n";
 				            }else{
 				                ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+vi.address+"\n";
 				            }
 				                _localctx.code +="RETURN\n";
 
-				        
+				    
 				}
 				break;
 			case 10:
@@ -522,7 +521,7 @@ public class calculParser extends Parser {
 		public String type;
 		public ExprContext a;
 		public Token ENTIER;
-		public Token COMMA;
+		public Token FLOTTANT;
 		public Token IDENTIFIANT;
 		public ArgsContext args;
 		public Token op;
@@ -534,7 +533,7 @@ public class calculParser extends Parser {
 			return getRuleContext(ExprContext.class,i);
 		}
 		public TerminalNode ENTIER() { return getToken(calculParser.ENTIER, 0); }
-		public TerminalNode COMMA() { return getToken(calculParser.COMMA, 0); }
+		public TerminalNode FLOTTANT() { return getToken(calculParser.FLOTTANT, 0); }
 		public TerminalNode IDENTIFIANT() { return getToken(calculParser.IDENTIFIANT, 0); }
 		public ArgsContext args() {
 			return getRuleContext(ArgsContext.class,0);
@@ -570,7 +569,14 @@ public class calculParser extends Parser {
 				match(T__3);
 				setState(116);
 				((ExprContext)_localctx).a = expr(9);
-				 ((ExprContext)_localctx).code =    "PUSHI -1\n" + ((ExprContext)_localctx).a.code  + "MUL \n" ; ((ExprContext)_localctx).type =  ((ExprContext)_localctx).a.type;
+
+				         ((ExprContext)_localctx).type =  ((ExprContext)_localctx).a.type;
+				        if(_localctx.type.equals("double")){
+				            ((ExprContext)_localctx).code =    "PUSHF -1.0\n" + ((ExprContext)_localctx).a.code  + "FMUL \n" ;
+				        }else{
+				             ((ExprContext)_localctx).code =    "PUSHI -1\n" + ((ExprContext)_localctx).a.code  + "MUL \n" ;
+				        }
+				    
 				}
 				break;
 			case 2:
@@ -594,8 +600,8 @@ public class calculParser extends Parser {
 			case 4:
 				{
 				setState(126);
-				((ExprContext)_localctx).COMMA = match(COMMA);
-				((ExprContext)_localctx).code =  "PUSHF "+ (((ExprContext)_localctx).COMMA!=null?((ExprContext)_localctx).COMMA.getText():null)+"\n"; ((ExprContext)_localctx).type = "double";
+				((ExprContext)_localctx).FLOTTANT = match(FLOTTANT);
+				((ExprContext)_localctx).code =  "PUSHF "+ (((ExprContext)_localctx).FLOTTANT!=null?((ExprContext)_localctx).FLOTTANT.getText():null)+"\n"; ((ExprContext)_localctx).type = "double";
 				}
 				break;
 			case 5:
@@ -605,7 +611,7 @@ public class calculParser extends Parser {
 
 				        VariableInfo vi = tablesSymboles.getVar((((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null));
 				        ((ExprContext)_localctx).type =  vi.type ;
-				        if(vi.type.equals("double")){
+				        if(_localctx.type.equals("double")){
 				         if(vi.scope == VariableInfo.Scope.GLOBAL){
 				            ((ExprContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
 				         }else{
@@ -651,7 +657,7 @@ public class calculParser extends Parser {
 
 				        ((ExprContext)_localctx).type =  tablesSymboles.getFunction((((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null));
 				        ((ExprContext)_localctx).code =  (_localctx.type.equals("double")?"PUSHF 0.0\n":"PUSHI 0\n");
-				         _localctx.code += ((ExprContext)_localctx).args.code ;
+				        _localctx.code += ((ExprContext)_localctx).args.code ;
 				        _localctx.code +="CALL " + (((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null) +"\n";
 				         for(int i=0 ; i<((ExprContext)_localctx).args.size ; i++){
 				             _localctx.code +="POP\n";
@@ -693,7 +699,10 @@ public class calculParser extends Parser {
 						}
 						setState(144);
 						((ExprContext)_localctx).b = expr(9);
-						((ExprContext)_localctx).type =  ((ExprContext)_localctx).a.type;((ExprContext)_localctx).code =  evalexpr(((ExprContext)_localctx).a.code ,(((ExprContext)_localctx).op!=null?((ExprContext)_localctx).op.getText():null), ((ExprContext)_localctx).b.code,((ExprContext)_localctx).a.type , ((ExprContext)_localctx).b.type); 
+						   if(((ExprContext)_localctx).a.type.equals("double") || ((ExprContext)_localctx).b.type.equals("double")){ ((ExprContext)_localctx).type =  "double";}
+						                  else{((ExprContext)_localctx).type =  "int";}
+						                  ((ExprContext)_localctx).code =  evalexpr(((ExprContext)_localctx).a.code ,(((ExprContext)_localctx).op!=null?((ExprContext)_localctx).op.getText():null), ((ExprContext)_localctx).b.code,_localctx.type); 
+						              
 						}
 						break;
 					case 2:
@@ -717,7 +726,10 @@ public class calculParser extends Parser {
 						}
 						setState(149);
 						((ExprContext)_localctx).b = expr(8);
-						((ExprContext)_localctx).type =  ((ExprContext)_localctx).a.type;((ExprContext)_localctx).code =  evalexpr(((ExprContext)_localctx).a.code ,(((ExprContext)_localctx).op!=null?((ExprContext)_localctx).op.getText():null) ,((ExprContext)_localctx).b.code,((ExprContext)_localctx).a.type , ((ExprContext)_localctx).b.type);   
+						   if(((ExprContext)_localctx).a.type.equals("double") || ((ExprContext)_localctx).b.type.equals("double")){ ((ExprContext)_localctx).type =  "double";}
+						                  else{((ExprContext)_localctx).type =  "int";}
+						                  ((ExprContext)_localctx).code =  evalexpr(((ExprContext)_localctx).a.code ,(((ExprContext)_localctx).op!=null?((ExprContext)_localctx).op.getText():null) ,((ExprContext)_localctx).b.code,_localctx.type);   
+						              
 						}
 						break;
 					}
@@ -778,9 +790,9 @@ public class calculParser extends Parser {
 
 				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),(((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null));
 				            if((((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null).equals("double")){
-				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n";
+				                ((DeclContext)_localctx).code =  "PUSHF 0.0 \n";
 				            }else{
-				            ((DeclContext)_localctx).code =  "PUSHI 0 \n";
+				                ((DeclContext)_localctx).code =  "PUSHI 0 \n";
 				            }
 				        
 				}
@@ -800,20 +812,19 @@ public class calculParser extends Parser {
 				finInstruction();
 
 				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),(((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null));
+				            VariableInfo vi = tablesSymboles.getVar((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null));
 				            if((((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null).equals("double")){
-				            VariableInfo vi = tablesSymboles.getVar((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null));
-				            if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
+				                if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                    ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
+				                }else{
+				                    ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREL "+ (vi.address+1)+"\nSTOREL "+ vi.address+"\n"; 
+				                }
 				            }else{
-				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREL "+ (vi.address+1)+"\nSTOREL "+ vi.address+"\n"; 
-				            }
-				            }else{
-				            VariableInfo vi = tablesSymboles.getVar((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null));
-				            if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((DeclContext)_localctx).code =  "PUSHI 0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ vi.address+"\n"; 
-				            }else{
-				            ((DeclContext)_localctx).code =  "PUSHI 0 \n" + ((DeclContext)_localctx).expr.code + "STOREL "+ vi.address+"\n"; 
-				            }
+				                if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                    ((DeclContext)_localctx).code =  "PUSHI 0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ vi.address+"\n"; 
+				                }else{
+				                    ((DeclContext)_localctx).code =  "PUSHI 0 \n" + ((DeclContext)_localctx).expr.code + "STOREL "+ vi.address+"\n"; 
+				                }
 				            }
 				        
 				}
@@ -867,17 +878,17 @@ public class calculParser extends Parser {
 				  
 				            VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
 				            if(vi.type.equals("double")){
-				            if(vi.scope == VariableInfo.Scope.GLOBAL){
-				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
-				            }else{
-				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n";   
-				            }
+				                if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                    ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
+				                }else{
+				                    ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n";   
+				                }
 				            }else{
 				                if(vi.scope == VariableInfo.Scope.GLOBAL){
-				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREG "+ vi.address+"\n";
-				            }else{
-				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREL "+ vi.address+"\n";   
-				            }
+				                    ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREG "+ vi.address+"\n";
+				                 }else{
+				                    ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREL "+ vi.address+"\n";   
+				                }
 				            }
 				        
 				}
@@ -896,25 +907,25 @@ public class calculParser extends Parser {
 
 				        VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
 				        if(vi.type.equals("double")){
-				        if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
-				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
-				            _localctx.code += "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
-				        }else{
-				            ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
-				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
-				            _localctx.code += "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n"; 
-				        }
+				            if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
+				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
+				                _localctx.code += "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
+				            }else{
+				                ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
+				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
+				                _localctx.code += "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n"; 
+				            }
 				        }else{
 				            if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\n";
-				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
-				            _localctx.code += "STOREG "+vi.address+"\n";
-				        }else{
-				            ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\n";
-				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
-				            _localctx.code += "STOREL "+vi.address+"\n";
-				        }
+				                ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\n";
+				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
+				                _localctx.code += "STOREG "+vi.address+"\n";
+				            }else{
+				                ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\n";
+				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
+				                _localctx.code += "STOREL "+vi.address+"\n";
+				            }
 				        }
 
 				    
@@ -936,27 +947,27 @@ public class calculParser extends Parser {
 
 				        
 				        VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
-				         if(vi.type.equals("double")){
-				        if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
-				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
-				            _localctx.code += "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
-				        }else{
-				            ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
-				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
-				            _localctx.code += "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n";
-				        }
-				         }else{
+				        if(vi.type.equals("double")){
 				            if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\n";
-				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
-				            _localctx.code += "STOREG "+vi.address+"\n";
+				                ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
+				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
+				                _localctx.code += "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
+				            }else{
+				                ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
+				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
+				                _localctx.code += "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n";
+				            }
 				        }else{
-				            ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\n";
-				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
-				            _localctx.code += "STOREL "+vi.address+"\n";
+				            if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\n";
+				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
+				                _localctx.code += "STOREG "+vi.address+"\n";
+				            }else{
+				                ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\n";
+				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
+				                _localctx.code += "STOREL "+vi.address+"\n";
+				            }
 				        }
-				         }
 
 				    
 				}
@@ -973,14 +984,12 @@ public class calculParser extends Parser {
 				setState(192);
 				match(T__2);
 
-
-				            
 				            if(((AssignationContext)_localctx).expr.type.equals("double")){
-				            ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code+"WRITEF\nPOP\nPOP\n";
+				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code+"WRITEF\nPOP\nPOP\n";
 				            }else{
 				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code+"WRITE\nPOP\n";
 				            }
-				        
+				    
 				}
 				break;
 			}
@@ -1044,7 +1053,7 @@ public class calculParser extends Parser {
 			((FonctionContext)_localctx).IDENTIFIANT = match(IDENTIFIANT);
 
 			           tablesSymboles.addFunction((((FonctionContext)_localctx).IDENTIFIANT!=null?((FonctionContext)_localctx).IDENTIFIANT.getText():null) , (((FonctionContext)_localctx).TYPE!=null?((FonctionContext)_localctx).TYPE.getText():null) );
-			        ((FonctionContext)_localctx).code =  "LABEL "+ (((FonctionContext)_localctx).IDENTIFIANT!=null?((FonctionContext)_localctx).IDENTIFIANT.getText():null) +"\n";
+			           ((FonctionContext)_localctx).code =  "LABEL "+ (((FonctionContext)_localctx).IDENTIFIANT!=null?((FonctionContext)_localctx).IDENTIFIANT.getText():null) +"\n";
 			        
 			setState(200);
 			match(T__1);
@@ -1106,7 +1115,7 @@ public class calculParser extends Parser {
 			setState(228);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__3) | (1L << T__8) | (1L << T__9) | (1L << T__12) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << RETURN) | (1L << IDENTIFIANT) | (1L << COMMA) | (1L << ENTIER) | (1L << NEWLINE))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__3) | (1L << T__8) | (1L << T__9) | (1L << T__12) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << RETURN) | (1L << IDENTIFIANT) | (1L << FLOTTANT) | (1L << ENTIER) | (1L << NEWLINE))) != 0)) {
 				{
 				{
 				setState(223);
@@ -1153,6 +1162,7 @@ public class calculParser extends Parser {
 	}
 
 	public static class ParamsContext extends ParserRuleContext {
+		public Token TYPE;
 		public Token IDENTIFIANT;
 		public List<TerminalNode> TYPE() { return getTokens(calculParser.TYPE); }
 		public TerminalNode TYPE(int i) {
@@ -1176,11 +1186,11 @@ public class calculParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(239);
-			match(TYPE);
+			((ParamsContext)_localctx).TYPE = match(TYPE);
 			setState(240);
 			((ParamsContext)_localctx).IDENTIFIANT = match(IDENTIFIANT);
 
-			           tablesSymboles.addParam((((ParamsContext)_localctx).IDENTIFIANT!=null?((ParamsContext)_localctx).IDENTIFIANT.getText():null),"int");
+			           tablesSymboles.addParam((((ParamsContext)_localctx).IDENTIFIANT!=null?((ParamsContext)_localctx).IDENTIFIANT.getText():null),(((ParamsContext)_localctx).TYPE!=null?((ParamsContext)_localctx).TYPE.getText():null));
 			        
 			setState(248);
 			_errHandler.sync(this);
@@ -1191,11 +1201,11 @@ public class calculParser extends Parser {
 				setState(242);
 				match(T__11);
 				setState(243);
-				match(TYPE);
+				((ParamsContext)_localctx).TYPE = match(TYPE);
 				setState(244);
 				((ParamsContext)_localctx).IDENTIFIANT = match(IDENTIFIANT);
 
-				               tablesSymboles.addParam((((ParamsContext)_localctx).IDENTIFIANT!=null?((ParamsContext)_localctx).IDENTIFIANT.getText():null),"int");
+				               tablesSymboles.addParam((((ParamsContext)_localctx).IDENTIFIANT!=null?((ParamsContext)_localctx).IDENTIFIANT.getText():null),(((ParamsContext)_localctx).TYPE!=null?((ParamsContext)_localctx).TYPE.getText():null));
 				            
 				}
 				}
@@ -1243,7 +1253,7 @@ public class calculParser extends Parser {
 			setState(262);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__3) | (1L << IDENTIFIANT) | (1L << COMMA) | (1L << ENTIER))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__3) | (1L << IDENTIFIANT) | (1L << FLOTTANT) | (1L << ENTIER))) != 0)) {
 				{
 				setState(251);
 				((ArgsContext)_localctx).expr = expr(0);
@@ -1540,7 +1550,7 @@ public class calculParser extends Parser {
 			setState(306);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__3) | (1L << T__8) | (1L << T__9) | (1L << T__12) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << RETURN) | (1L << IDENTIFIANT) | (1L << COMMA) | (1L << ENTIER) | (1L << NEWLINE))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__3) | (1L << T__8) | (1L << T__9) | (1L << T__12) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << RETURN) | (1L << IDENTIFIANT) | (1L << FLOTTANT) | (1L << ENTIER) | (1L << NEWLINE))) != 0)) {
 				{
 				{
 				setState(301);
@@ -1656,12 +1666,10 @@ public class calculParser extends Parser {
 				setState(324);
 				((ConditionContext)_localctx).b = expr(0);
 
-				        if(((ConditionContext)_localctx).a.type.equals("double") && ((ConditionContext)_localctx).b.type.equals("double")){
-				                ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "SUP\n";
-				        }else{
+				       
 				                ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "FSUP\n";
 
-				        }
+				        
 				    
 				}
 				break;
@@ -1674,12 +1682,10 @@ public class calculParser extends Parser {
 				setState(329);
 				((ConditionContext)_localctx).b = expr(0);
 
-				        if(((ConditionContext)_localctx).a.type.equals("double") && ((ConditionContext)_localctx).b.type.equals("double")){
-				            ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "FSUPEQ\n";
-				        }else{
+				       
 				            ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "SUPEQ\n";
 
-				        }
+				        
 				    
 				}
 				break;
@@ -1691,8 +1697,9 @@ public class calculParser extends Parser {
 				match(T__20);
 				setState(334);
 				((ConditionContext)_localctx).b = expr(0);
-				   if(((ConditionContext)_localctx).a.type.equals("double") && ((ConditionContext)_localctx).b.type)
-				        ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "INFEQ\n";
+				   
+				            ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "INFEQ\n";
+				        
 				    
 				}
 				break;
@@ -1704,7 +1711,11 @@ public class calculParser extends Parser {
 				match(T__21);
 				setState(339);
 				((ConditionContext)_localctx).b = expr(0);
-				((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "EQUAL\n";
+
+				        
+				            ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "FEQUAL\n";
+				        
+				    
 				}
 				break;
 			case 6:
@@ -1715,7 +1726,12 @@ public class calculParser extends Parser {
 				match(T__22);
 				setState(344);
 				((ConditionContext)_localctx).b = expr(0);
-				((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "NEQ\n";
+
+				     
+				            ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "FNEQ\n";
+
+				        
+				    
 				}
 				break;
 			case 7:

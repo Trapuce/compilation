@@ -1,4 +1,4 @@
-// Generated from /home/traore213/Documents/l3/s2/theorie_des_langages_et_compilation/dm/compilation/dm/sources-MVaP-3.1/calcul.g4 by ANTLR 4.9.2
+// Generated from /home/traore/Documents/theorieDesLangagesEtCompilation/Compilation/new/compilation/dm/sources-MVaP-3.1/calcul.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -20,7 +20,7 @@ public class calculLexer extends Lexer {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, RETURN=29, TYPE=30, IDENTIFIANT=31, 
-		WHITE_SPACE=32, COMMENT=33, LINE_COMMENT=34, COMMA=35, ENTIER=36, NEWLINE=37;
+		WHITE_SPACE=32, COMMENT=33, LINE_COMMENT=34, FLOTTANT=35, ENTIER=36, NEWLINE=37;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -35,7 +35,7 @@ public class calculLexer extends Lexer {
 			"T__9", "T__10", "T__11", "T__12", "T__13", "T__14", "T__15", "T__16", 
 			"T__17", "T__18", "T__19", "T__20", "T__21", "T__22", "T__23", "T__24", 
 			"T__25", "T__26", "T__27", "RETURN", "TYPE", "IDENTIFIANT", "WHITE_SPACE", 
-			"COMMENT", "LINE_COMMENT", "COMMA", "ENTIER", "NEWLINE"
+			"COMMENT", "LINE_COMMENT", "FLOTTANT", "ENTIER", "NEWLINE"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -54,7 +54,7 @@ public class calculLexer extends Lexer {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, "RETURN", "TYPE", "IDENTIFIANT", "WHITE_SPACE", 
-			"COMMENT", "LINE_COMMENT", "COMMA", "ENTIER", "NEWLINE"
+			"COMMENT", "LINE_COMMENT", "FLOTTANT", "ENTIER", "NEWLINE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
