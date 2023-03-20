@@ -1,0 +1,23 @@
+Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
+line 19:6 token recognition error at: '.'
+line 24:0 token recognition error at: '#'
+line 24:21 token recognition error at: 'é'
+line 24:31 token recognition error at: '''
+line 24:49 token recognition error at: 'é'
+line 24:63 token recognition error at: 'é'
+line 24:99 token recognition error at: '''
+line 24:112 token recognition error at: 'é'
+line 25:0 token recognition error at: '#'
+line 25:37 token recognition error at: '''
+line 25:70 token recognition error at: 'é'
+line 25:103 token recognition error at: '''
+line 34:0 token recognition error at: '#'
+line 34:21 token recognition error at: 'é'
+line 34:31 token recognition error at: '''
+line 34:49 token recognition error at: 'é'
+line 34:63 token recognition error at: 'é'
+line 34:99 token recognition error at: '''
+line 34:112 token recognition error at: 'é'
+line 3:5 no viable alternative at input 'boolb'
+## Erreur : la variable "b" n'existe pas
+Problems calling org.antlr.v4.gui.TestRig.main(args)

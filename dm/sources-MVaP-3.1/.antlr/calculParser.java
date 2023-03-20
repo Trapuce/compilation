@@ -1,4 +1,4 @@
-// Generated from /home/traore213/Documents/l3/s2/theorie_des_langages_et_compilation/compilation/dm/sources-MVaP-3.1/calcul.g4 by ANTLR 4.9.2
+// Generated from /home/traore213/Documents/l3/s2/theorie_des_langages_et_compilation/dm/compilation/dm/sources-MVaP-3.1/calcul.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -105,19 +105,36 @@ public class calculParser extends Parser {
 	    // ...
 	       private TablesSymboles tablesSymboles = new TablesSymboles();
 
-	    private String evalexpr (String x, String op, String y) {
-	        if ( op.equals("*") ){
-	            return x+y + "MUL\n";
-	        } else if ( op.equals("+") ){
-	            return x+y+"ADD\n";
-	        }else if ( op.equals("/") ){
-	            return x+y+"DIV\n";
-	        }else if ( op.equals("-") ){
-	            return x+y+"SUB\n";
-	        }   
-	        else {
-	           System.err.println("Opérateur arithmétique incorrect : '"+op+"'");
-	           throw new IllegalArgumentException("Opérateur arithmétique incorrect : '"+op+"'");
+	    private String evalexpr (String x, String op, String y , String typeA , String typeB) {
+	        
+	        if(typeA.equals("double") && typeB.equals("double")){
+	            if ( op.equals("*") ){
+	                return x+y + "FMUL\n";
+	             } else if ( op.equals("+") ){
+	                return x+y+"FADD\n";
+	            }else if ( op.equals("/") ){
+	                return x+y+"FDIV\n";
+	            }else if ( op.equals("-") ){
+	                return x+y+"FSUB\n";
+	            }   
+	            else {
+	                System.err.println("Opérateur arithmétique incorrect : '"+op+"'");
+	                throw new IllegalArgumentException("Opérateur arithmétique incorrect : '"+op+"'");
+	            }
+	        }else{
+	            if ( op.equals("*") ){
+	                 return x+y + "MUL\n";
+	             } else if ( op.equals("+") ){
+	                 return x+y+"ADD\n";
+	            }else if ( op.equals("/") ){
+	                return x+y+"DIV\n";
+	            }else if ( op.equals("-") ){
+	                return x+y+"SUB\n";
+	            }   
+	            else {
+	                System.err.println("Opérateur arithmétique incorrect : '"+op+"'");
+	                throw new IllegalArgumentException("Opérateur arithmétique incorrect : '"+op+"'");
+	            }
 	        }
 	    }
 
@@ -442,17 +459,15 @@ public class calculParser extends Parser {
 				             VariableInfo vi = tablesSymboles.getVar((((InstructionContext)_localctx).IDENTIFIANT!=null?((InstructionContext)_localctx).IDENTIFIANT.getText():null));
 				             if(vi.type.equals("double")){
 				             if(vi.scope == VariableInfo.Scope.GLOBAL){
-				                ((InstructionContext)_localctx).code =  "READF\nSTOREG "+(vi.address+1)+"\n"+STOREG "+vi.address+"\n";
+				                ((InstructionContext)_localctx).code =  "READF\nSTOREG "+(vi.address+1)+"\nSTOREG "+vi.address+"\n";
 				             }else{
-				                ((InstructionContext)_localctx).code =  "READF\nSTOREL "+(vi.address+1)+"\n"+STOREL "+vi.address+"\n";
-
+				                ((InstructionContext)_localctx).code =  "READF\nSTOREL "+(vi.address+1)+"\nSTOREL "+vi.address+"\n";
 				             }
 				             }else{
 				                if(vi.scope == VariableInfo.Scope.GLOBAL){
 				                ((InstructionContext)_localctx).code =  "READ\nSTOREG "+vi.address+"\n";
 				             }else{
 				                ((InstructionContext)_localctx).code =  "READ\nSTOREL "+vi.address+"\n";
-
 				             }
 				             }
 				        
@@ -469,9 +484,13 @@ public class calculParser extends Parser {
 				finInstruction();
 
 				            VariableInfo vi = tablesSymboles.getReturn();
-				            ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+vi.address+"\n";
-				            _localctx.code +="RETURN\n";
-				            
+				            if(vi.type.equals("double")){
+				            ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+(vi.address+1)+ "\nSTOREL "+vi.address+"\n";
+				            }else{
+				                ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+vi.address+"\n";
+				            }
+				                _localctx.code +="RETURN\n";
+
 				        
 				}
 				break;
@@ -551,7 +570,7 @@ public class calculParser extends Parser {
 				match(T__3);
 				setState(116);
 				((ExprContext)_localctx).a = expr(9);
-				 ((ExprContext)_localctx).code =    "PUSHI -1\n" + ((ExprContext)_localctx).a.code  + "MUL \n" ;
+				 ((ExprContext)_localctx).code =    "PUSHI -1\n" + ((ExprContext)_localctx).a.code  + "MUL \n" ; ((ExprContext)_localctx).type =  ((ExprContext)_localctx).a.type;
 				}
 				break;
 			case 2:
@@ -562,21 +581,21 @@ public class calculParser extends Parser {
 				((ExprContext)_localctx).a = expr(0);
 				setState(121);
 				match(T__2);
-				((ExprContext)_localctx).code =  ((ExprContext)_localctx).a.code;
+				((ExprContext)_localctx).code =  ((ExprContext)_localctx).a.code; ((ExprContext)_localctx).type =  ((ExprContext)_localctx).a.type;
 				}
 				break;
 			case 3:
 				{
 				setState(124);
 				((ExprContext)_localctx).ENTIER = match(ENTIER);
-				((ExprContext)_localctx).code =  "PUSHI " + (((ExprContext)_localctx).ENTIER!=null?((ExprContext)_localctx).ENTIER.getText():null)+"\n";
+				((ExprContext)_localctx).code =  "PUSHI " + (((ExprContext)_localctx).ENTIER!=null?((ExprContext)_localctx).ENTIER.getText():null)+"\n"; ((ExprContext)_localctx).type =  "int";
 				}
 				break;
 			case 4:
 				{
 				setState(126);
 				((ExprContext)_localctx).COMMA = match(COMMA);
-				((ExprContext)_localctx).code =  "PUSHF "+ (((ExprContext)_localctx).COMMA!=null?((ExprContext)_localctx).COMMA.getText():null)+"\n";
+				((ExprContext)_localctx).code =  "PUSHF "+ (((ExprContext)_localctx).COMMA!=null?((ExprContext)_localctx).COMMA.getText():null)+"\n"; ((ExprContext)_localctx).type = "double";
 				}
 				break;
 			case 5:
@@ -584,13 +603,23 @@ public class calculParser extends Parser {
 				setState(128);
 				((ExprContext)_localctx).IDENTIFIANT = match(IDENTIFIANT);
 
-				        
 				        VariableInfo vi = tablesSymboles.getVar((((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null));
+				        ((ExprContext)_localctx).type =  vi.type ;
+				        if(vi.type.equals("double")){
+				         if(vi.scope == VariableInfo.Scope.GLOBAL){
+				            ((ExprContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
+				         }else{
+				           ((ExprContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
+				         }
+				        }else{
 				         if(vi.scope == VariableInfo.Scope.GLOBAL){
 				            ((ExprContext)_localctx).code =  "PUSHG "+vi.address+"\n"; 
 				         }else{
 				            ((ExprContext)_localctx).code =  "PUSHL "+vi.address+"\n";
 				         }
+				        }
+				        
+
 				    
 				}
 				break;
@@ -603,8 +632,9 @@ public class calculParser extends Parser {
 				setState(132);
 				match(T__2);
 
-				            
-				            ((ExprContext)_localctx).code = "CALL " + (((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null) +"\n";
+				            ((ExprContext)_localctx).type =  tablesSymboles.getFunction((((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null));
+				            ((ExprContext)_localctx).code =  (_localctx.type.equals("double")?"PUSHF 0.0\n":"PUSHI 0\n");
+				            _localctx.code +="CALL " + (((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null) +"\n";
 				        
 				}
 				break;
@@ -619,7 +649,8 @@ public class calculParser extends Parser {
 				setState(137);
 				match(T__2);
 
-				         ((ExprContext)_localctx).code =  "PUSHI 0\n";
+				        ((ExprContext)_localctx).type =  tablesSymboles.getFunction((((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null));
+				        ((ExprContext)_localctx).code =  (_localctx.type.equals("double")?"PUSHF 0.0\n":"PUSHI 0\n");
 				         _localctx.code += ((ExprContext)_localctx).args.code ;
 				        _localctx.code +="CALL " + (((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null) +"\n";
 				         for(int i=0 ; i<((ExprContext)_localctx).args.size ; i++){
@@ -662,7 +693,7 @@ public class calculParser extends Parser {
 						}
 						setState(144);
 						((ExprContext)_localctx).b = expr(9);
-						((ExprContext)_localctx).code =  evalexpr(((ExprContext)_localctx).a.code ,(((ExprContext)_localctx).op!=null?((ExprContext)_localctx).op.getText():null), ((ExprContext)_localctx).b.code);
+						((ExprContext)_localctx).type =  ((ExprContext)_localctx).a.type;((ExprContext)_localctx).code =  evalexpr(((ExprContext)_localctx).a.code ,(((ExprContext)_localctx).op!=null?((ExprContext)_localctx).op.getText():null), ((ExprContext)_localctx).b.code,((ExprContext)_localctx).a.type , ((ExprContext)_localctx).b.type); 
 						}
 						break;
 					case 2:
@@ -686,7 +717,7 @@ public class calculParser extends Parser {
 						}
 						setState(149);
 						((ExprContext)_localctx).b = expr(8);
-						((ExprContext)_localctx).code =  evalexpr(((ExprContext)_localctx).a.code ,(((ExprContext)_localctx).op!=null?((ExprContext)_localctx).op.getText():null) ,((ExprContext)_localctx).b.code);
+						((ExprContext)_localctx).type =  ((ExprContext)_localctx).a.type;((ExprContext)_localctx).code =  evalexpr(((ExprContext)_localctx).a.code ,(((ExprContext)_localctx).op!=null?((ExprContext)_localctx).op.getText():null) ,((ExprContext)_localctx).b.code,((ExprContext)_localctx).a.type , ((ExprContext)_localctx).b.type);   
 						}
 						break;
 					}
@@ -745,12 +776,11 @@ public class calculParser extends Parser {
 				setState(159);
 				finInstruction();
 
+				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),(((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null));
 				            if((((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null).equals("double")){
 				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n";
-				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),"double");
 				            }else{
 				            ((DeclContext)_localctx).code =  "PUSHI 0 \n";
-				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),"int");
 				            }
 				        
 				}
@@ -769,16 +799,15 @@ public class calculParser extends Parser {
 				setState(166);
 				finInstruction();
 
+				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),(((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null));
 				            if((((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null).equals("double")){
-				                    tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),"double");
 				            VariableInfo vi = tablesSymboles.getVar((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null));
 				            if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\n"+ "STOREG "+ vi.address +"\n"; 
+				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
 				            }else{
-				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREL "+ (vi.address+1)+"\n"+ "STOREL "+ vi.address+"\n"; 
+				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREL "+ (vi.address+1)+"\nSTOREL "+ vi.address+"\n"; 
 				            }
 				            }else{
-				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),"int");
 				            VariableInfo vi = tablesSymboles.getVar((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null));
 				            if(vi.scope == VariableInfo.Scope.GLOBAL){
 				            ((DeclContext)_localctx).code =  "PUSHI 0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ vi.address+"\n"; 
@@ -839,9 +868,9 @@ public class calculParser extends Parser {
 				            VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
 				            if(vi.type.equals("double")){
 				            if(vi.scope == VariableInfo.Scope.GLOBAL){
-				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\n"+ "STOREG "+ vi.address +"\n"; 
+				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
 				            }else{
-				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREL "+ (vi.address +1)+"\n"+ "STOREL "+ vi.address +"\n";   
+				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n";   
 				            }
 				            }else{
 				                if(vi.scope == VariableInfo.Scope.GLOBAL){
@@ -868,13 +897,13 @@ public class calculParser extends Parser {
 				        VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
 				        if(vi.type.equals("double")){
 				        if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((AssignationContext)_localctx).code =  "PUSHG "+(vi.address-1)+"\n" +"PUSHG "+vi.address+"\n";
+				            ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
 				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
-				            _localctx.code += "STOREG "+ (vi.address +1)+"\n"+ "STOREG "+ vi.address +"\n"; 
+				            _localctx.code += "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
 				        }else{
-				            ((AssignationContext)_localctx).code =  "PUSHL "+(vi.address-1)+"\n" +"PUSHL "+vi.address"\n";
+				            ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
 				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
-				            _localctx.code += "STOREL "+ (vi.address +1)+"\n"+ "STOREL "+ vi.address +"\n"; 
+				            _localctx.code += "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n"; 
 				        }
 				        }else{
 				            if(vi.scope == VariableInfo.Scope.GLOBAL){
@@ -909,13 +938,13 @@ public class calculParser extends Parser {
 				        VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
 				         if(vi.type.equals("double")){
 				        if(vi.scope == VariableInfo.Scope.GLOBAL){
-				            ((AssignationContext)_localctx).code =  "PUSHG "+(vi.address-1)+"\n" +"PUSHG "+vi.address"\n";
+				            ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
 				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
-				            _localctx.code += "STOREG "+ (vi.address +1)+"\n"+ "STOREG "+ vi.address +"\n"; 
+				            _localctx.code += "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
 				        }else{
-				            ((AssignationContext)_localctx).code =  "PUSHL "+(vi.address-1)+"\n" +"PUSHL "+vi.address"\n";
+				            ((AssignationContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
 				            _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
-				            _localctx.code += "STOREL "+ (vi.address +1)+"\n"+ "STOREL "+ vi.address +"\n";
+				            _localctx.code += "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n";
 				        }
 				         }else{
 				            if(vi.scope == VariableInfo.Scope.GLOBAL){
@@ -944,9 +973,10 @@ public class calculParser extends Parser {
 				setState(192);
 				match(T__2);
 
-				            VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).expr!=null?_input.getText(((AssignationContext)_localctx).expr.start,((AssignationContext)_localctx).expr.stop):null));
-				            if(vi.type.equals("double")){
-				            ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code+"WRITEF\nPOP\n";
+
+				            
+				            if(((AssignationContext)_localctx).expr.type.equals("double")){
+				            ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code+"WRITEF\nPOP\nPOP\n";
 				            }else{
 				                ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code+"WRITE\nPOP\n";
 				            }
@@ -1478,6 +1508,7 @@ public class calculParser extends Parser {
 
 	public static class BlocContext extends ParserRuleContext {
 		public String code;
+		public String type;
 		public InstructionContext instruction;
 		public List<InstructionContext> instruction() {
 			return getRuleContexts(InstructionContext.class);
@@ -1554,6 +1585,7 @@ public class calculParser extends Parser {
 
 	public static class ConditionContext extends ParserRuleContext {
 		public String code;
+		public String type;
 		public ConditionContext c;
 		public ConditionContext g;
 		public ExprContext a;
@@ -1605,7 +1637,14 @@ public class calculParser extends Parser {
 				match(T__17);
 				setState(319);
 				((ConditionContext)_localctx).b = expr(0);
-				((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "INF\n";  
+
+				        if(((ConditionContext)_localctx).a.type.equals("double") && ((ConditionContext)_localctx).b.type.equals("double")){
+				                ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "FINF\n";  
+				        }else{
+				                ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "INF\n";  
+
+				        }
+				    
 				}
 				break;
 			case 2:
@@ -1616,7 +1655,14 @@ public class calculParser extends Parser {
 				match(T__18);
 				setState(324);
 				((ConditionContext)_localctx).b = expr(0);
-				((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "SUP\n";
+
+				        if(((ConditionContext)_localctx).a.type.equals("double") && ((ConditionContext)_localctx).b.type.equals("double")){
+				                ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "SUP\n";
+				        }else{
+				                ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "FSUP\n";
+
+				        }
+				    
 				}
 				break;
 			case 3:
@@ -1627,7 +1673,14 @@ public class calculParser extends Parser {
 				match(T__19);
 				setState(329);
 				((ConditionContext)_localctx).b = expr(0);
-				((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "SUPEQ\n";
+
+				        if(((ConditionContext)_localctx).a.type.equals("double") && ((ConditionContext)_localctx).b.type.equals("double")){
+				            ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "FSUPEQ\n";
+				        }else{
+				            ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "SUPEQ\n";
+
+				        }
+				    
 				}
 				break;
 			case 4:
@@ -1638,7 +1691,9 @@ public class calculParser extends Parser {
 				match(T__20);
 				setState(334);
 				((ConditionContext)_localctx).b = expr(0);
-				((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "INFEQ\n";
+				   if(((ConditionContext)_localctx).a.type.equals("double") && ((ConditionContext)_localctx).b.type)
+				        ((ConditionContext)_localctx).code =  ((ConditionContext)_localctx).a.code + ((ConditionContext)_localctx).b.code + "INFEQ\n";
+				    
 				}
 				break;
 			case 5:
