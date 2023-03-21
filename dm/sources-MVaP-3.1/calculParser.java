@@ -121,6 +121,7 @@ public class calculParser extends Parser {
 	                throw new IllegalArgumentException("Opérateur arithmétique incorrect : '"+op+"'");
 	            }
 	        }else{
+	            System.out.println("Opérateur arithmétique incorrect : ");
 	            if ( op.equals("*") ){
 	                 return x+y + "MUL\n";
 	             } else if ( op.equals("+") ){
@@ -511,7 +512,7 @@ public class calculParser extends Parser {
 
 				            VariableInfo vi = tablesSymboles.getReturn();
 				            if(vi.type.equals("double")){
-				                ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+(vi.address+1)+ "\nSTOREL "+vi.address+"\n";
+				                ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+ (vi.address+1) + "\nSTOREL "+vi.address+"\n";
 				            }else{
 				                ((InstructionContext)_localctx).code =  ((InstructionContext)_localctx).expr.code + "STOREL "+vi.address+"\n";
 				            }
@@ -651,7 +652,7 @@ public class calculParser extends Parser {
 				         if(vi.scope == VariableInfo.Scope.GLOBAL){
 				            ((ExprContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
 				         }else{
-				           ((ExprContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
+				            ((ExprContext)_localctx).code =  "PUSHL "+vi.address+"\nPUSHL "+(vi.address+1)+"\n";
 				         }
 				        }else{
 				         if(vi.scope == VariableInfo.Scope.GLOBAL){
@@ -696,7 +697,13 @@ public class calculParser extends Parser {
 				        _localctx.code += ((ExprContext)_localctx).args.code ;
 				        _localctx.code +="CALL " + (((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null) +"\n";
 				         for(int i=0 ; i<((ExprContext)_localctx).args.size ; i++){
-				             _localctx.code +="POP\n";
+				             if(_localctx.type.equals("double")){
+				                 _localctx.code +="POP\nPOP\n";
+
+				             }else{
+				                _localctx.code +="POP\n";
+
+				             }
 				          }
 				    
 				}
@@ -833,9 +840,9 @@ public class calculParser extends Parser {
 
 				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),(((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null));
 				            if((((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null).equals("double")){
-				            ((DeclContext)_localctx).code =  "PUSHF 0.0 \n";
+				                ((DeclContext)_localctx).code =  "PUSHF 0.0 \n";
 				            }else{
-				            ((DeclContext)_localctx).code =  "PUSHI 0 \n";
+				                ((DeclContext)_localctx).code =  "PUSHI 0 \n";
 				            }
 				        
 				}
@@ -857,13 +864,13 @@ public class calculParser extends Parser {
 				            tablesSymboles.addVarDecl((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null),(((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null));
 				            VariableInfo vi = tablesSymboles.getVar((((DeclContext)_localctx).IDENTIFIANT!=null?((DeclContext)_localctx).IDENTIFIANT.getText():null));
 				            if((((DeclContext)_localctx).TYPE!=null?((DeclContext)_localctx).TYPE.getText():null).equals("double")){
-				                if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                if(vi.scope.equals(VariableInfo.Scope.GLOBAL)){
 				                    ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
 				                }else{
 				                    ((DeclContext)_localctx).code =  "PUSHF 0.0 \n" + ((DeclContext)_localctx).expr.code + "STOREL "+ (vi.address+1)+"\nSTOREL "+ vi.address+"\n"; 
 				                }
 				            }else{
-				                if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                if(vi.scope.equals(VariableInfo.Scope.GLOBAL)){
 				                    ((DeclContext)_localctx).code =  "PUSHI 0 \n" + ((DeclContext)_localctx).expr.code + "STOREG "+ vi.address+"\n"; 
 				                }else{
 				                    ((DeclContext)_localctx).code =  "PUSHI 0 \n" + ((DeclContext)_localctx).expr.code + "STOREL "+ vi.address+"\n"; 
@@ -930,13 +937,13 @@ public class calculParser extends Parser {
 				  
 				            VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
 				            if(vi.type.equals("double")){
-				                if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                if(vi.scope.equals(VariableInfo.Scope.GLOBAL)){
 				                    ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
 				                }else{
 				                    ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n";   
 				                }
 				            }else{
-				                if(vi.scope == VariableInfo.Scope.GLOBAL){
+				                if(vi.scope.equals(VariableInfo.Scope.GLOBAL)){
 				                    ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREG "+ vi.address+"\n";
 				                 }else{
 				                    ((AssignationContext)_localctx).code =  ((AssignationContext)_localctx).expr.code + "STOREL "+ vi.address+"\n";   
@@ -959,7 +966,7 @@ public class calculParser extends Parser {
 
 				        VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
 				        if(vi.type.equals("double")){
-				            if(vi.scope == VariableInfo.Scope.GLOBAL){
+				            if(vi.scope.equals(VariableInfo.Scope.GLOBAL)){
 				                ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
 				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
 				                _localctx.code += "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
@@ -969,7 +976,7 @@ public class calculParser extends Parser {
 				                _localctx.code += "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n"; 
 				            }
 				        }else{
-				            if(vi.scope == VariableInfo.Scope.GLOBAL){
+				            if(vi.scope.equals(VariableInfo.Scope.GLOBAL)){
 				                ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\n";
 				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
 				                _localctx.code += "STOREG "+vi.address+"\n";
@@ -1000,7 +1007,7 @@ public class calculParser extends Parser {
 				        
 				        VariableInfo vi = tablesSymboles.getVar((((AssignationContext)_localctx).IDENTIFIANT!=null?((AssignationContext)_localctx).IDENTIFIANT.getText():null));
 				        if(vi.type.equals("double")){
-				            if(vi.scope == VariableInfo.Scope.GLOBAL){
+				            if(vi.scope.equals(VariableInfo.Scope.GLOBAL)){
 				                ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\nPUSHG "+(vi.address+1)+"\n";
 				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "FADD\n";
 				                _localctx.code += "STOREG "+ (vi.address +1)+"\nSTOREG "+ vi.address +"\n"; 
@@ -1010,7 +1017,7 @@ public class calculParser extends Parser {
 				                _localctx.code += "STOREL "+ (vi.address +1)+"\nSTOREL "+ vi.address +"\n";
 				            }
 				        }else{
-				            if(vi.scope == VariableInfo.Scope.GLOBAL){
+				            if(vi.scope.equals(VariableInfo.Scope.GLOBAL)){
 				                ((AssignationContext)_localctx).code =  "PUSHG "+vi.address+"\n";
 				                _localctx.code +=  ((AssignationContext)_localctx).expr.code + "ADD\n";
 				                _localctx.code += "STOREG "+vi.address+"\n";
