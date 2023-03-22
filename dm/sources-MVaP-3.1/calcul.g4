@@ -23,7 +23,6 @@ grammar calcul;
                 throw new IllegalArgumentException("Opérateur arithmétique incorrect : '"+op+"'");
             }
         }else{
-            System.out.println("Opérateur arithmétique incorrect : ");
             if ( op.equals("*") ){
                  return x+y + "MUL\n";
              } else if ( op.equals("+") ){
@@ -165,13 +164,10 @@ expr returns[ String code, String type ]
         $code += $args.code ;
         $code +="CALL " + $IDENTIFIANT.text +"\n";
          for(int i=0 ; i<$args.size ; i++){
-             if($type.equals("double")){
-                 $code +="POP\nPOP\n";
-
-             }else{
+             
                 $code +="POP\n";
 
-             }
+             
           }
     };
 
@@ -308,11 +304,13 @@ args
 	@init { $code = new String(); $size = 0; }: (
 		expr {
          $code = $expr.code;
-         $size +=1;
+         if($expr.type.equals("double")){$size +=2;}
+         else{$size +=1;}
     } (
 			',' expr {
         $code += $expr.code;
-        $size +=1;
+        if($expr.type.equals("double")){$size +=2;}
+         else{$size +=1;}
     }
 		)*
 	)?;

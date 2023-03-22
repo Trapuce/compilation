@@ -1,4 +1,4 @@
-// Generated from /home/traore/Documents/theorieDesLangagesEtCompilation/Compilation/new/compilation/dm/sources-MVaP-3.1/calcul.g4 by ANTLR 4.9.2
+// Generated from /home/traore/Documents/theorieDesLangagesEtCompilation/Compilation/new1/compilation/dm/sources-MVaP-3.1/calcul.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -121,7 +121,6 @@ public class calculParser extends Parser {
 	                throw new IllegalArgumentException("Opérateur arithmétique incorrect : '"+op+"'");
 	            }
 	        }else{
-	            System.out.println("Opérateur arithmétique incorrect : ");
 	            if ( op.equals("*") ){
 	                 return x+y + "MUL\n";
 	             } else if ( op.equals("+") ){
@@ -661,13 +660,10 @@ public class calculParser extends Parser {
 				        _localctx.code += ((ExprContext)_localctx).args.code ;
 				        _localctx.code +="CALL " + (((ExprContext)_localctx).IDENTIFIANT!=null?((ExprContext)_localctx).IDENTIFIANT.getText():null) +"\n";
 				         for(int i=0 ; i<((ExprContext)_localctx).args.size ; i++){
-				             if(_localctx.type.equals("double")){
-				                 _localctx.code +="POP\nPOP\n";
-
-				             }else{
+				             
 				                _localctx.code +="POP\n";
 
-				             }
+				             
 				          }
 				    
 				}
@@ -1266,7 +1262,8 @@ public class calculParser extends Parser {
 				((ArgsContext)_localctx).expr = expr(0);
 
 				         ((ArgsContext)_localctx).code =  ((ArgsContext)_localctx).expr.code;
-				         _localctx.size +=1;
+				         if(((ArgsContext)_localctx).expr.type.equals("double")){_localctx.size +=2;}
+				         else{_localctx.size +=1;}
 				    
 				setState(259);
 				_errHandler.sync(this);
@@ -1280,7 +1277,8 @@ public class calculParser extends Parser {
 					((ArgsContext)_localctx).expr = expr(0);
 
 					        _localctx.code += ((ArgsContext)_localctx).expr.code;
-					        _localctx.size +=1;
+					        if(((ArgsContext)_localctx).expr.type.equals("double")){_localctx.size +=2;}
+					         else{_localctx.size +=1;}
 					    
 					}
 					}
