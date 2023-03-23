@@ -1,6 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 6:13 missing '{' at 'print'
-line 7:5 no viable alternative at input 'elseif'
-line 7:18 missing '{' at 'print'
-line 8:11 no viable alternative at input 'elseprint'
-line 9:0 extraneous input '<EOF>' expecting {'input', '(', '-', 'print', 'if', 'while', '{', '}', 'true', 'false', '!', ';', IDENTIFIANT, ENTIER, NEWLINE}

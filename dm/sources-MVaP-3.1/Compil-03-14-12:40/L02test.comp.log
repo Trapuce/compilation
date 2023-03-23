@@ -1,3 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 1:12 token recognition error at: '.'
-line 1:13 extraneous input '3' expecting {';', NEWLINE}

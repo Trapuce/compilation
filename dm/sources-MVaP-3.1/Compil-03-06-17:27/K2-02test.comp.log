@@ -1,6 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 4:12 token recognition error at: ','
-line 14:3 token recognition error at: ','
-line 4:5 no viable alternative at input 'intf('
-## Erreur : la variable "y" n'existe pas
-Problems calling org.antlr.v4.gui.TestRig.main(args)

@@ -1,9 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 3:12 token recognition error at: '.'
-line 5:6 token recognition error at: '.'
-line 5:12 token recognition error at: '.'
-line 5:16 token recognition error at: '.'
-line 2:8 no viable alternative at input 'doubleg('
-line 3:9 no viable alternative at input 'returnx'
-## Erreur : la variable "x" n'existe pas
-Problems calling org.antlr.v4.gui.TestRig.main(args)

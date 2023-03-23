@@ -1,8 +1,0 @@
-  JUMP Main
-nullRETURN
-LABEL Main
-nullPUSHI 1664
-WRITE
-POP
-null  HALT
-

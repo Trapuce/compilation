@@ -1,8 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 5:9 token recognition error at: '%'
-line 5:11 token recognition error at: 'L'
-line 5:15 token recognition error at: 'é'
-line 5:22 token recognition error at: 'à'
-line 5:12 mismatched input 'a' expecting {';', NEWLINE}
-## Erreur : la variable "tout" n'existe pas
-Problems calling org.antlr.v4.gui.TestRig.main(args)

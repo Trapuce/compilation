@@ -1,4 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 3:5 no viable alternative at input 'intf('
-line 4:7 mismatched input '69888' expecting IDENTIFIANT
-line 8:1 no viable alternative at input 'f('

@@ -1,8 +1,0 @@
-nullnullnullnullnullPUSHI 42
-WRITE
-POP
-nullnullnullPUSHI 1664
-WRITE
-POP
-nullnullnull  HALT
-

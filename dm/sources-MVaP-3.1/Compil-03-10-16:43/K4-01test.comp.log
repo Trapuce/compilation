@@ -1,5 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 3:14 mismatched input '{' expecting {')', ','}
-line 4:2 extraneous input 'int' expecting {'input', '(', '-', 'print', 'if', 'while', 'for', ';', '{', '}', 'true', 'false', '!', IDENTIFIANT, ENTIER, NEWLINE}
-## Erreur : la variable "z" n'existe pas
-Problems calling org.antlr.v4.gui.TestRig.main(args)

@@ -1,3 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 3:0 mismatched input 'print' expecting {';', NEWLINE}
-line 6:0 mismatched input 'print' expecting {';', NEWLINE}

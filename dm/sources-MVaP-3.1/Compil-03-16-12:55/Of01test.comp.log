@@ -1,4 +1,0 @@
-Warning: TestRig moved to org.antlr.v4.gui.TestRig; calling automatically
-line 3:17 token recognition error at: '.'
-## Erreur : la variable "5.3*y+2" n'existe pas
-Problems calling org.antlr.v4.gui.TestRig.main(args)

@@ -1,8 +1,0 @@
-nullnullnullnullnullPUSHI 15
-WRITE
-POP
-PUSHI 12
-WRITE
-POP
-  HALT
-
